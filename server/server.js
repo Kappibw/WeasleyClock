@@ -25,8 +25,7 @@ db.connect(err => {
 app.use(express.json());
 
 // POST endpoint to insert data
-// curl -X POST   -H "Content-Type: application/json"   -d '{"name":"kappi","coordinates":"POINT(-33.93977815657354 18.416488657913117)"}'   http://api.thinkkappi.com:3000/update_location
-app.post('/update_location', (req, res) => {
+app.post('/api.thinkkappi.com/update_location', (req, res) => {
     const { name, coordinates } = req.body;
     // Format the location as a MySQL POINT string
     const pointString = `ST_GeomFromText('${coordinates}')`;
@@ -44,7 +43,7 @@ app.post('/update_location', (req, res) => {
 });
 
 // GET endpoint to fetch data
-app.get('/get_locations', (req, res) => {
+app.get('/api.thinkkappi.com/get_locations', (req, res) => {
     const sql = `SELECT * FROM locations`;
 
     db.query(sql, (err, rows) => {

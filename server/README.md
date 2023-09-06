@@ -34,7 +34,7 @@ Replace `<app-name>` with the name of your running app.
   curl -X POST \
        -H "Content-Type: application/json" \
        -d '{"name":"kappi","coordinates":"POINT(-33.93977815657354 18.416488657913117)"}' \
-       http://api.thinkkappi.com:3000/update_location
+       https://api.thinkkappi.com/update_location
   ```
 
 - **GET `/get_locations`**: Fetch all location data.
