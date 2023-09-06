@@ -6,9 +6,23 @@ This repo contains the code and documentation for a mechatronic ["Weasley Clock"
 The aim of this project was to make a physical clock with analog hands that could track the locations of 4 people and display their semantic locations - for example, "home", "work" or "school". The software side of this project was straightforward, with the exception of getting iPhones to send background location updates - an understandable security risk that Apple isn't keen to enable easily. The hardware was more challenging - the original Weasley Clock had 9 hands, but the design of this clock limited the number of hands because the depth of the clock increases a fair amount with eaach additional hand.
 
 ### Hardware Design
+
+[See the CAD in OnShape here.](https://cad.onshape.com/documents/66e3b5d9824aa8def7be97d7/w/c58a58111746879d14d77595/e/6aeb3d4680c2786dbe83b1da)
+
 To get 4 hands all moving independently, we decided on a design of 4 nested tubes each driven by a separate stepper motor behind the clockface. Each smaller tube protudes out beyond the larger tube it is nested within, both on the back side of the clock (where the stepper motors drive the movement) and on the front side (where the hands are attached).
 
+<div style="display: flex; justify-content: space-between;">
+    <img src="./readme_pics/clock_side_view.PNG" alt="Image 2" width="20%" />
+    <img src="./readme_pics/clock_hand_attachement.PNG" alt="Image 2" width="39%" />
+    <img src="./readme_pics/clock_driveshafts.PNG" alt="Image 1" width="40%" />
+</div>
+
 Each stepper motor drives a gear, which in turn drives a gear fixed to the back end of its tube - thereby turning the driveshaft for its hand. The motors are each mounted on a plywood board with a hole in the center for the tubes to pass through, and all four boards are stacked in a cuboid housing behind the clockface. The housing has additional space to hold the stepper motor drivers and the raspberry pi, and the entire motor housing can then sit inside the cylindrical clock, with just the concentric tubes protuding through the clock face. Each protuding tube is then attached via set-screw to a 3D printed component with a slit to hold a clock hand. All the hardware is modular and easy to disassemble and reassemble for updates.
+
+<div style="display: flex; justify-content: space-between;">
+    <img src="./readme_pics/clock_assembly.PNG" alt="Image 1" width="49%" />
+    <img src="./readme_pics/clock_face.PNG" alt="Image 2" width="50%" />
+</div>
 
 ### Software Design
 In order to be able to easily move the clock and not have to worry about having users update the endpoint they used to report their locations when the clock changed IP address, we decided to use a design of a central cloud server which users could send location updates to, and the clock could fetch locations from. It was straightforward to do this by adding an "api" subdomain to my existing thinkkappi.com domain, and use my existing webhosting to create a very simple node.js server that offered two endpoints:
