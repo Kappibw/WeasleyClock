@@ -1,6 +1,11 @@
 # Weasley Clock Location Server
 
-This directory contains a node.js server that listens on port 3000. The .htaccess file in the root directory of the shared dreamhost hosting routes incoming https requests to localhost:3000 and node interprets them. The server uses the Express framework and a MySQL database. It provides endpoints for updating and fetching location data and includes a scheduled task to clear old entries from the database every 10 minutes.
+This directory contains a node.js server that listens on port 3000. The .htaccess file in the root directory of the shared dreamhost hosting routes incoming https requests to localhost:3000 and node interprets them:
+```
+RewriteEngine On
+RewriteRule ^(.*)$ http://localhost:3000/$1 [P]
+```
+The server uses the Express framework and a MySQL database. It provides endpoints for updating and fetching location data and includes a scheduled task to clear old entries from the database every 10 minutes.
 
 ### Usage
 
@@ -27,8 +32,6 @@ pm2 stop <app-name>
 ```bash
 pm2 logs
 ```
-
-Replace `<app-name>` with the name of your running app.
 
 5. Endpoints:
 
