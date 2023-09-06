@@ -26,6 +26,12 @@ Instead, we opted for a hacky workaround, which was to exploit the 'automation' 
 
 In the end, I opted for the "App" trigger, which doesn't require confirmation and will run each time an app is opened. I have users pick the app they use most frequently as their trigger, and then set the actions to make a POST request to the `/update_location` endpoint with a payload of the iPhone's current lat/lng (a value that shortcuts allows you to access). While this isn't perfect, it seems to work well enough as people tend to check their phones in transitional times of their day, when they are likely to be changing semantic location. Just make sure to select 'best' on the Current Location variable's granularity, otherwise you just get within 100m as default.
 
+<div style="display: flex; justify-content: space-between;">
+    <img src="./readme_pics/automation_1.PNG" alt="Image 1" width="300" />
+    <img src="./readme_pics/automation_2.PNG" alt="Image 2" width="335" />
+    <img src="./readme_pics/automation_3.PNG" alt="Image 3" width="350" />
+</div>
+
 ## Directory Structure
 ### [Embedded](https://github.com/Kappibw/WeasleyClock/tree/master/embedded)
 Code running on the rasberry pi, physically inside the clock, governing the hardware.
