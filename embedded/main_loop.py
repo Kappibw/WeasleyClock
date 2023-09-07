@@ -1,3 +1,4 @@
+import os
 import sys
 import time
 import requests
@@ -67,7 +68,14 @@ def parse_timestamp(timestamp_str):
 
 def get_current_semantic_locations():
     # HTTP GET request to the API endpoint
-    url = "http://api.thinkkappi.com:3000/get_locations"
+    url = "https://api.thinkkappi.com/get_locations"
+    secret_token = os.environ.get("WEASLEY_CLOCK_ENDPOINT_SECRET")
+    if secret_token is None:
+        print("Error: SECRET_TOKEN environment variable not set.")
+        exit(1)
+    headers = {
+    "Authorization": secret_token
+    }
     response = requests.get(url)
     data = response.json()
 
