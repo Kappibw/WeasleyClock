@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const mysql = require('mysql');
 const schedule = require('node-schedule');
@@ -24,6 +25,18 @@ db.connect(err => {
 
 app.use(express.json());
 
+// Authorization middleware function
+const authorize = (req, res, next) => {
+  const authHeader = req.headers.authorization;
+  const correctToken = process.env.SECRET_TOKEN;  // Read from environment variable;
+
+  if (!authHeader || authHeader !== correctToken) {
+    res.status(401).send('Unauthorized');
+  } else {
+    next();
+  }
+};
+
 // POST endpoint to insert data
 app.post('/api.thinkkappi.com/update_location', (req, res) => {
     const { name, coordinates } = req.body;
@@ -43,7 +56,7 @@ app.post('/api.thinkkappi.com/update_location', (req, res) => {
 });
 
 // GET endpoint to fetch data
-app.get('/api.thinkkappi.com/get_locations', (req, res) => {
+app.get('/api.thinkkappi.com/get_locations', authorize, (req, res) => {
     const sql = `SELECT * FROM locations`;
 
     db.query(sql, (err, rows) => {
