@@ -11,10 +11,10 @@ The aim of this project was to make a physical clock with analog hands that coul
 
 To get 4 hands all moving independently, we decided on a design of 4 nested tubes each driven by a separate stepper motor behind the clockface. Each smaller tube protudes out beyond the larger tube it is nested within, both on the back side of the clock (where the stepper motors drive the movement) and on the front side (where the hands are attached).
 
-<div style="display: flex; justify-content: space-between;">
-    <img src="./readme_pics/clock_side_view.PNG" alt="Image 2" width="20%" />
-    <img src="./readme_pics/clock_hand_attachement.PNG" alt="Image 2" width="39%" />
-    <img src="./readme_pics/clock_driveshafts.PNG" alt="Image 1" width="40%" />
+<div style="display: flex; justify-content: space-around; vertical-align: middle">
+    <img src="./readme_pics/clock_side_view.PNG" alt="Image 1" width="20%" />
+    <img src="./readme_pics/clock_driveshafts.PNG" alt="Image 2" width="37%" />
+    <img src="./readme_pics/clock_hand_attachement.PNG" alt="Image 1" width="30%" />
 </div>
 
 Each stepper motor drives a gear, which in turn drives a gear fixed to the back end of its tube - thereby turning the driveshaft for its hand. The motors are each mounted on a plywood board with a hole in the center for the tubes to pass through, and all four boards are stacked in a cuboid housing behind the clockface. The housing has additional space to hold the stepper motor drivers and the raspberry pi, and the entire motor housing can then sit inside the cylindrical clock, with just the concentric tubes protuding through the clock face. Each protuding tube is then attached via set-screw to a 3D printed component with a slit to hold a clock hand. All the hardware is modular and easy to disassemble and reassemble for updates.
