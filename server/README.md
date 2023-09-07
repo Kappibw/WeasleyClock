@@ -7,6 +7,10 @@ RewriteRule ^(.*)$ http://localhost:3000/$1 [P]
 ```
 The server uses the Express framework and a MySQL database. It provides endpoints for updating and fetching location data and includes a scheduled task to clear old entries from the database every 10 minutes.
 
+### Setup
+
+The authorization that protects the `/get_locations` endpoint reads a SECRET_TOKEN from a .env file using the dotenv npm package, so make sure to set up your own.
+
 ### Usage
 
 1. Start the server using PM2.
